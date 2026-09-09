@@ -16,34 +16,40 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   1. THEME ENGINE (Dark / Light Mode with LocalStorage)
+   1. THEME ENGINE (Mechanical Left/Right Sliding Switch with LocalStorage)
    ========================================================================== */
 function initThemeEngine() {
-  const themeToggleBtn = document.getElementById('themeToggleBtn');
-  const themeIcon = document.getElementById('themeIcon');
+  const switchInputs = document.querySelectorAll('.theme-switch-input');
   
   // Check persisted preference or default to dark
   const savedTheme = localStorage.getItem('ammar_theme') || 'dark';
   applyTheme(savedTheme);
   
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-      const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-      applyTheme(newTheme);
+  // Attach change listener to all switch inputs (navbar and drawer)
+  switchInputs.forEach(input => {
+    input.addEventListener('change', (e) => {
+      const isLight = e.target.checked;
+      applyTheme(isLight ? 'light' : 'dark');
     });
-  }
+  });
   
   function applyTheme(theme) {
-    if (theme === 'light') {
+    const isLight = theme === 'light';
+    
+    // Update HTML root attribute
+    if (isLight) {
       document.documentElement.setAttribute('data-theme', 'light');
-      if (themeIcon) themeIcon.textContent = '🌙';
       localStorage.setItem('ammar_theme', 'light');
     } else {
       document.documentElement.removeAttribute('data-theme');
-      if (themeIcon) themeIcon.textContent = '☀️';
       localStorage.setItem('ammar_theme', 'dark');
     }
+    
+    // Synchronize all switch inputs across the UI
+    switchInputs.forEach(input => {
+      input.checked = isLight;
+      input.setAttribute('aria-checked', isLight ? 'true' : 'false');
+    });
   }
 }
 

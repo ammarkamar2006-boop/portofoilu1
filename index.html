@@ -110,11 +110,38 @@
         </ul>
       </nav>
 
-      <!-- Right Controls: Theme Switcher & Mobile Menu Trigger -->
+      <!-- Right Controls: Horizontal Mechanical Theme Switch (Left / Right) & Mobile Menu Trigger -->
       <div class="nav-right-controls">
-        <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme Mode" title="Toggle Dark / Light Mode">
-          <span id="themeIcon">☀️</span>
-        </button>
+        <div class="theme-switch-wrapper" title="Switch Theme (Left: Dark / Right: Light)">
+          <span class="switch-side-label switch-side-left" aria-hidden="true">DARK</span>
+          <div class="theme-switch-container">
+            <input type="checkbox" id="themeSwitchCheckbox" class="theme-switch-input" role="switch" aria-label="Toggle Dark and Light Mode">
+            <label for="themeSwitchCheckbox" class="theme-switch-track">
+              <span class="track-icon track-icon-dark" aria-hidden="true" title="Dark Mode (Left)">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+              </span>
+              <span class="track-icon track-icon-light" aria-hidden="true" title="Light Mode (Right)">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <line x1="12" y1="1" x2="12" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="23"></line>
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                  <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                  <line x1="1" y1="12" x2="3" y2="12"></line>
+                  <line x1="21" y1="12" x2="23" y2="12"></line>
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                  <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+              </span>
+              <span class="theme-switch-thumb">
+                <span class="thumb-core"></span>
+              </span>
+            </label>
+          </div>
+          <span class="switch-side-label switch-side-right" aria-hidden="true">LIGHT</span>
+        </div>
         
         <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Navigation Drawer">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -140,6 +167,35 @@
       <div class="brand-text" style="margin-bottom: 8px;">
         <span class="brand-name" style="font-size: 1.15rem;">Ammar Maher</span>
         <span class="brand-sub">Faculty of Engineering</span>
+      </div>
+
+      <!-- Mobile Drawer Theme Switch Row -->
+      <div class="drawer-theme-row">
+        <span class="drawer-theme-text">Mode:</span>
+        <div class="theme-switch-wrapper">
+          <span class="switch-side-label switch-side-left">DARK</span>
+          <div class="theme-switch-container">
+            <input type="checkbox" id="drawerThemeSwitchCheckbox" class="theme-switch-input" role="switch" aria-label="Toggle Dark and Light Mode Mobile">
+            <label for="drawerThemeSwitchCheckbox" class="theme-switch-track">
+              <span class="track-icon track-icon-dark" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+              </span>
+              <span class="track-icon track-icon-light" aria-hidden="true">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <circle cx="12" cy="12" r="5"></circle>
+                  <line x1="12" y1="1" x2="12" y2="3"></line>
+                  <line x1="12" y1="21" x2="12" y2="23"></line>
+                </svg>
+              </span>
+              <span class="theme-switch-thumb">
+                <span class="thumb-core"></span>
+              </span>
+            </label>
+          </div>
+          <span class="switch-side-label switch-side-right">LIGHT</span>
+        </div>
       </div>
 
       <ul class="mobile-nav-links">
