@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="description" content="Portfolio of Ammar Maher Abdel-Jalil El-Qamar - Mechatronics Engineering Student and Hafiz of the Holy Quran. Discover robotic systems, embedded control, and engineering precision.">
+  <meta name="keywords" content="Ammar Maher, Mechatronics, Robotics, Hafiz Quran, Embedded Systems, PID Control, ROS, Engineering Portfolio">
+  <meta name="author" content="Ammar Maher Abdel-Jalil El-Qamar">
+  <title>Ammar Maher | Mechatronics Engineer & Quran Hafiz</title>
+  
+  <!-- Direct CSS linkage in flat directory -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ========================================================================
+       MECHATRONICS INTRO LOADING OVERLAY
+       ======================================================================== -->
+  <aside id="mecha-loader" aria-label="System Initializing Screen">
+    <div class="loader-circuit-bg"></div>
+    <div class="loader-content">
+      
+      <!-- Precision Interlocking Mechatronics Gear Assembly -->
+      <div class="gear-assembly">
+        <svg class="gear-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Primary Driving Gear (Center) -->
+          <g class="gear-main">
+            <circle cx="50" cy="50" r="28" stroke="#00f0ff" stroke-width="2.5" stroke-dasharray="7 3" fill="rgba(0, 240, 255, 0.05)" />
+            <circle cx="50" cy="50" r="14" stroke="#00f0ff" stroke-width="2" />
+            <circle cx="50" cy="50" r="6" fill="#00f0ff" />
+            <path d="M50 14 L50 22 M50 78 L50 86 M14 50 L22 50 M78 50 L86 50 M25 25 L31 31 M69 69 L75 75 M75 25 L69 31 M25 75 L31 69" stroke="#00f0ff" stroke-width="3" stroke-linecap="round" />
+          </g>
+          
+          <!-- Secondary Planetary Gear (Top Right) -->
+          <g class="gear-secondary">
+            <circle cx="78" cy="24" r="14" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4 2" fill="rgba(245, 158, 11, 0.05)" />
+            <circle cx="78" cy="24" r="5" fill="#f59e0b" />
+          </g>
+          
+          <!-- Tertiary Planetary Gear (Bottom Left) -->
+          <g class="gear-tertiary">
+            <circle cx="22" cy="76" r="15" stroke="#3b82f6" stroke-width="2" stroke-dasharray="5 2.5" fill="rgba(59, 130, 246, 0.05)" />
+            <circle cx="22" cy="76" r="4.5" fill="#3b82f6" />
+          </g>
+          
+          <!-- Electronic PCB Trace Bus & Pulse Nodes -->
+          <path d="M10 50 H24 L34 38 H66 L76 50 H90" stroke="rgba(0, 240, 255, 0.4)" stroke-width="1.5" stroke-dasharray="2 2" />
+          <circle cx="34" cy="38" r="3" fill="#00f0ff" class="circuit-pulse-node" />
+          <circle cx="66" cy="38" r="3" fill="#00f0ff" class="circuit-pulse-node" />
+        </svg>
+      </div>
+
+      <div class="loader-title">
+        <span class="pulse-dot"></span> MECHATRONICS CORE
+      </div>
+
+      <!-- Live Diagnostic Telemetry Console -->
+      <div class="loader-terminal" id="loaderTerminal">
+        <!-- Telemetry lines appended in sequence via script.js -->
+      </div>
+
+      <!-- Progression Status Bar -->
+      <div class="loader-progress-wrap">
+        <div class="progress-header">
+          <span>SYSTEM DIAGNOSTIC</span>
+          <span id="loaderPercent">0%</span>
+        </div>
+        <div class="loader-bar">
+          <div class="loader-bar-fill" id="loaderBarFill"></div>
+        </div>
+      </div>
+
+      <div class="loader-actions">
+        <button type="button" class="btn-skip" id="skipLoaderBtn">Skip Initialization &gt;&gt;</button>
+      </div>
+
+    </div>
+  </aside>
+
+  <!-- ========================================================================
+       TOP NAVIGATION HEADER
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="nav-container">
+      
+      <!-- Brand Logo -->
+      <a href="#" class="brand-logo" aria-label="Ammar Maher Portfolio Home">
+        <svg class="brand-gear-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        <div class="brand-text">
+          <span class="brand-name">AMMAR MAHER</span>
+          <span class="brand-sub">MECHATRONICS &middot; HAFIZ</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Items -->
+      <nav aria-label="Desktop Navigation">
+        <ul class="nav-links">
+          <li><a href="#about" class="nav-link">Identity</a></li>
+          <li><a href="#pillars" class="nav-link">4 Pillars</a></li>
+          <li><a href="#simulator" class="nav-link">Mecha Lab</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#skills" class="nav-link">Competencies</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Right Controls: Theme Switcher & Mobile Menu Trigger -->
+      <div class="nav-right-controls">
+        <button type="button" class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Theme Mode" title="Toggle Dark / Light Mode">
+          <span id="themeIcon">☀️</span>
+        </button>
+        
+        <button type="button" class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Navigation Drawer">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       MOBILE NAVIGATION DRAWER (Optimized for 360px+ Smartphones)
+       ======================================================================== -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer" aria-hidden="true">
+    <div class="mobile-drawer-sheet">
+      <button type="button" class="drawer-close-btn" id="drawerCloseBtn" aria-label="Close Navigation Drawer">
+        ✕
+      </button>
+      
+      <div class="brand-text" style="margin-bottom: 8px;">
+        <span class="brand-name" style="font-size: 1.15rem;">Ammar Maher</span>
+        <span class="brand-sub">Faculty of Engineering</span>
+      </div>
+
+      <ul class="mobile-nav-links">
+        <li><a href="#about"><span class="icon">01.</span> Personal Identity</a></li>
+        <li><a href="#pillars"><span class="icon">02.</span> 4 Pillars of Mechatronics</a></li>
+        <li><a href="#simulator"><span class="icon">03.</span> Interactive Simulator</a></li>
+        <li><a href="#projects"><span class="icon">04.</span> Engineering Projects</a></li>
+        <li><a href="#skills"><span class="icon">05.</span> Technical Matrix</a></li>
+        <li><a href="#quran-pillar"><span class="icon">06.</span> Quranic Foundation</a></li>
+        <li><a href="#contact"><span class="icon">07.</span> Connect with Ammar</a></li>
+      </ul>
+
+      <div style="margin-top: auto; padding-top: 20px; border-top: 1px solid var(--border-subtle); font-family: var(--font-mono); font-size: 0.72rem; color: var(--text-muted);">
+        Mechatronics &middot; Robotics &middot; Hafiz
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <!-- ======================================================================
+         HERO SECTION - MILLIMETER-CALIBRATED RESPONSIVENESS
+         ====================================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <!-- Column 1: Ammar Maher Portrait with Mechanical HUD -->
+          <div class="hero-visual">
+            <div class="portrait-hud-wrapper">
+              
+              <!-- Rotating HUD Rings -->
+              <div class="hud-ring-outer"></div>
+              <div class="hud-ring-inner"></div>
+              
+              <!-- Orientation Crosshair Markers -->
+              <div class="hud-marker-top"></div>
+              <div class="hud-marker-bottom"></div>
+              <div class="hud-marker-left"></div>
+              <div class="hud-marker-right"></div>
+              
+              <!-- Generated Portrait Matching Facial Features -->
+              <div class="portrait-img-container">
+                <img src="profile.jpg" alt="Ammar Maher Abdel-Jalil El-Qamar in Robotics Lab" class="portrait-img" loading="eager">
+              </div>
+
+              <!-- Status Badges -->
+              <div class="portrait-badge-mecha">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                MECHATRONICS
+              </div>
+
+              <div class="portrait-badge-quran">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+                QURAN HAFIZ
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Column 2: Personal Branding & Identity Description -->
+          <div class="hero-content">
+            
+            <div class="hero-pill-badge">
+              <span class="radar-pulse"></span>
+              <span>ENGINEERING STUDENT &middot; HAFIZ</span>
+            </div>
+
+            <h1 class="hero-title">
+              <span class="highlight-name">Ammar Maher</span>
+              <span class="hero-arabic-name">عمار ماهر عبد الجليل القمر</span>
+            </h1>
+
+            <div class="hero-typing-box">
+              <span id="heroTypingText"></span><span class="typing-cursor">|</span>
+            </div>
+
+            <p class="hero-description">
+              Faculty of Engineering student specializing in <strong>Mechatronics Engineering</strong>. Combining mechanical kinematics, embedded electronics, and closed-loop control algorithms with the razor-sharp mental discipline and integrity forged through <strong>complete memorization of the Holy Quran</strong>.
+            </p>
+
+            <!-- Call to Actions -->
+            <div class="hero-cta-group">
+              <a href="#simulator" class="btn btn-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+                Launch Mecha Lab
+              </a>
+
+              <a href="#projects" class="btn btn-secondary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                </svg>
+                Explore Projects
+              </a>
+
+              <a href="#contact" class="btn btn-amber">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+                Get In Touch
+              </a>
+            </div>
+
+            <!-- Quick Stats Row -->
+            <div class="hero-stats-row">
+              <div class="stat-box">
+                <div class="stat-value">30 JUZ'</div>
+                <div class="stat-label">Complete Quran Hafiz</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-value">MECHA</div>
+                <div class="stat-label">Faculty of Engineering</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-value amber">100%</div>
+                <div class="stat-label">Precision & Focus</div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         PHILOSOPHY & THE DUAL MASTERY SECTION
+         ====================================================================== -->
+    <section class="section-wrapper bg-surface" id="about">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Core Identity</span>
+          <h2 class="section-title">The Dual Mastery: Engineering & Scripture</h2>
+          <p class="section-subtitle">
+            How deep Quranic discipline and modern Mechatronics Engineering merge into high-precision problem-solving.
+          </p>
+        </div>
+
+        <div class="dual-mastery-grid">
+          
+          <!-- Card 1: Mechatronics Engineering Discipline -->
+          <article class="mastery-card">
+            <div class="card-header-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+
+            <h3 class="mastery-title">Mechatronics Engineering Synergy</h3>
+            <p class="mastery-desc">
+              Mechatronics is where physical mechanics, digital silicon, and mathematical software unite. As an engineering student, I engineer closed-loop systems that perceive the environment via sensors, make algorithmic decisions, and actuate physical mechanisms with repeatable sub-millimeter precision.
+            </p>
+
+            <div class="card-tags">
+              <span class="tag-badge">Robotics Kinematics</span>
+              <span class="tag-badge">Embedded STM32</span>
+              <span class="tag-badge">PID Control</span>
+              <span class="tag-badge">CAD Synthesis</span>
+            </div>
+          </article>
+
+          <!-- Card 2: Quranic Memorization Discipline -->
+          <article class="mastery-card quran-card" id="quran-pillar">
+            <div class="card-header-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                <path d="M2 17l10 5 10-5"></path>
+                <path d="M2 12l10 5 10-5"></path>
+              </svg>
+            </div>
+
+            <h3 class="mastery-title">Cognitive Endurance & Quran Memorization</h3>
+            <p class="mastery-desc">
+              Committing all 604 pages of the Holy Quran to memory requires extraordinary discipline, mental stamina, pattern recognition, and methodical patience. This sacred foundation sharpens my cognitive retention, allows me to debug intricate code systematically, and upholds uncompromising engineering ethics.
+            </p>
+
+            <div class="quran-verse-quote">
+              <div class="verse-arabic">وَقُل رَّبِّ زِدْنِي عِلْمًا</div>
+              <div class="verse-trans">"And say: My Lord, increase me in knowledge."</div>
+              <div class="verse-ref">Surah Ta-Ha &middot; Verse 114</div>
+            </div>
+
+            <div class="card-tags">
+              <span class="tag-badge">Complete 30 Juz'</span>
+              <span class="tag-badge">Methodical Focus</span>
+              <span class="tag-badge">High Retention</span>
+              <span class="tag-badge">Ethical Engineering</span>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         THE 4 PILLARS OF MECHATRONICS (MATRIX GRID)
+         ====================================================================== -->
+    <section class="section-wrapper" id="pillars">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Engineering Matrix</span>
+          <h2 class="section-title">The Four Pillars of My Engineering</h2>
+          <p class="section-subtitle">
+            A balanced integration of mechanical design, embedded electronics, advanced software, and character foundation.
+          </p>
+        </div>
+
+        <div class="pillars-grid">
+          
+          <!-- Pillar 1 -->
+          <div class="pillar-card">
+            <div class="pillar-num">01 // MECHANICAL</div>
+            <div class="pillar-head">
+              <div class="pillar-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="3"></circle>
+                  <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+              </div>
+              <h3 class="pillar-title">CAD & Kinematics</h3>
+            </div>
+            <p class="pillar-text">
+              Designing rigid structures, gear trains, dynamic linkage mechanisms, and rapid 3D prototyping.
+            </p>
+            <ul class="pillar-tech-list">
+              <li class="pillar-tech-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> SolidWorks 3D Modeling</li>
+              <li class="pillar-tech-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Mechanism Synthesis</li>
+              <li class="pillar-tech-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Rapid 3D Prototyping</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="pillar-card">
+            <div class="pillar-num">02 // ELECTRONICS</div>
+            <div class="pillar-head">
+              <div class="pillar-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect>
+                  <rect x="9" y="9" width="6" height="6"></rect>
+                  <line x1="9" y1="1" x2="9" y2="4"></line>
+                  <line x1="15" y1="1" x2="15" y2="4"></line>
+                  <line x1="9" y1="20" x2="9" y2="23"></line>
+                  <line x1="15" y1="20" x2="15" y2="23"></line>
+                  <line x1="20" y1="9" x2="23" y2="9"></line>
+                  <line x1="20" y1="14" x2="23" y2="14"></line>
+                  <line x1="1" y1="9" x2="4" y2="9"></line>
+                  <line x1="1" y1="14" x2="4" y2="14"></line>
+                </svg>
+              </div>
+              <h3 class="pillar-title">Embedded Hardware</h3>
+            </div>
+            <p class="pillar-text">
+              Interfacing sensors, motor drivers, microcontrollers, and designing reliable PCB circuits.
+            </p>
+            <ul class="pillar-tech-list">
+              <li class="pillar-tech-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> STM32 / Arduino / ESP32</li>
+              <li class="pillar-tech-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Encoders, IMU & LiDAR</li>
+              <li class="pillar-tech-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Power Electronics & Actuation</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="pillar-card">
+            <div class="pillar-num">03 // SOFTWARE</div>
+            <div class="pillar-head">
+              <div class="pillar-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <h3 class="pillar-title">Control & Firmware</h3>
+            </div>
+            <p class="pillar-text">
+              Developing real-time closed-loop PID control loops, ROS nodes, and embedded C/C++ firmware.
+            </p>
+            <ul class="pillar-tech-list">
+              <li class="pillar-tech-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Embedded C & C++</li>
+              <li class="pillar-tech-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Discrete PID & State Space</li>
+              <li class="pillar-tech-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Python & MATLAB / Simulink</li>
+            </ul>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="pillar-card amber">
+            <div class="pillar-num">04 // FOUNDATION</div>
+            <div class="pillar-head">
+              <div class="pillar-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                  <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                </svg>
+              </div>
+              <h3 class="pillar-title">Discipline & Ethics</h3>
+            </div>
+            <p class="pillar-text">
+              Uncompromising dedication, patience with difficult challenges, and rigorous ethical standards.
+            </p>
+            <ul class="pillar-tech-list">
+              <li class="pillar-tech-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Holy Quran Complete Hafiz</li>
+              <li class="pillar-tech-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Relentless Attention to Detail</li>
+              <li class="pillar-tech-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"></polyline></svg> Structured Engineering Method</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         INTERACTIVE MECHATRONICS LAB SIMULATOR (Live In-Browser)
+         ====================================================================== -->
+    <section class="section-wrapper bg-surface" id="simulator">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Live Interactive Module</span>
+          <h2 class="section-title">Interactive Mechatronics Lab</h2>
+          <p class="section-subtitle">
+            Experience a live 2-DOF Articulated Robotic Arm in your browser. Move your finger or cursor inside the canvas to test closed-loop Inverse Kinematics in real-time.
+          </p>
+        </div>
+
+        <div class="simulator-box">
+          
+          <div class="sim-header">
+            <div class="sim-title-group">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon points="12 8 8 12 12 16 12 8"></polygon>
+              </svg>
+              <strong style="font-family: var(--font-mono); font-size: 0.9rem;">2-DOF KINEMATICS ENGINE</strong>
+            </div>
+
+            <div class="sim-status-indicator">
+              <span class="pulse-green"></span>
+              <span>CLOSED-LOOP CONTROLLER ACTIVE</span>
+            </div>
+          </div>
+
+          <!-- Simulation Canvas Area -->
+          <div class="sim-canvas-wrapper">
+            <canvas id="robotArmCanvas"></canvas>
+            <div class="sim-overlay-hint">Touch / Click & Drag Target Inside Reach Envelope</div>
+          </div>
+
+          <!-- Real-Time Telemetry Gauges -->
+          <div class="sim-telemetry-readout">
+            <div class="telemetry-item">
+              <span class="label">END-EFFECTOR X</span>
+              <span class="val" id="readoutX">0 mm</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="label">END-EFFECTOR Y</span>
+              <span class="val" id="readoutY">0 mm</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="label">CONTROL MODE</span>
+              <span class="val" id="readoutMode">CLOSED-LOOP IK</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="label">GRIPPER STATE</span>
+              <span class="val" id="readoutGripper">OPEN</span>
+            </div>
+          </div>
+
+          <!-- Controls Panel -->
+          <div class="sim-controls-panel">
+            
+            <!-- Shoulder Joint Slider -->
+            <div class="sim-slider-control">
+              <div class="slider-label-row">
+                <span>Joint 1 Shoulder (&theta;1):</span>
+                <span class="slider-val" id="valTheta1">-45°</span>
+              </div>
+              <input type="range" min="-120" max="20" value="-45" class="sim-range-input" id="sliderTheta1">
+            </div>
+
+            <!-- Elbow Joint Slider -->
+            <div class="sim-slider-control">
+              <div class="slider-label-row">
+                <span>Joint 2 Elbow (&theta;2):</span>
+                <span class="slider-val" id="valTheta2">70°</span>
+              </div>
+              <input type="range" min="10" max="150" value="70" class="sim-range-input" id="sliderTheta2">
+            </div>
+
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="sim-btn-row">
+            <button type="button" class="btn btn-primary" id="btnAutoTrack">Tracking Mode: [ON]</button>
+            <button type="button" class="btn btn-secondary" id="btnToggleGripper">Gripper: [OPEN]</button>
+            <button type="button" class="btn btn-secondary" id="btnResetArm">Calibrate / Reset</button>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         FEATURED ENGINEERING PROJECTS
+         ====================================================================== -->
+    <section class="section-wrapper" id="projects">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Featured Works</span>
+          <h2 class="section-title">Engineering Projects & Systems</h2>
+          <p class="section-subtitle">
+            Hands-on mechatronics applications spanning autonomous robotics, precision vision-guided manipulation, and closed-loop control.
+          </p>
+        </div>
+
+        <div class="projects-grid">
+          
+          <!-- Project 1 -->
+          <article class="project-card">
+            <div class="project-visual">
+              <svg class="project-blueprint-svg" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="200" fill="#0b1120"/>
+                <circle cx="200" cy="100" r="60" stroke="#00f0ff" stroke-width="2" stroke-dasharray="6 4" />
+                <circle cx="200" cy="100" r="30" stroke="#3b82f6" stroke-width="2" />
+                <rect x="160" y="70" width="80" height="60" rx="8" stroke="#00f0ff" stroke-width="2" fill="rgba(0, 240, 255, 0.08)"/>
+                <line x1="140" y1="85" x2="160" y2="85" stroke="#f59e0b" stroke-width="4"/>
+                <line x1="140" y1="115" x2="160" y2="115" stroke="#f59e0b" stroke-width="4"/>
+                <line x1="240" y1="85" x2="260" y2="85" stroke="#f59e0b" stroke-width="4"/>
+                <line x1="240" y1="115" x2="260" y2="115" stroke="#f59e0b" stroke-width="4"/>
+                <circle cx="200" cy="100" r="8" fill="#00f0ff"/>
+                <path d="M200 100 L250 60" stroke="#10b981" stroke-width="2" stroke-linecap="round"/>
+                <circle cx="250" cy="60" r="4" fill="#10b981"/>
+              </svg>
+              <div class="project-badge-type">ROBOTICS / SLAM</div>
+            </div>
+
+            <div class="project-info">
+              <h3 class="project-title">Autonomous Mobile Robot (SLAM & Navigation)</h3>
+              <p class="project-desc">
+                Differential-drive autonomous ground robot equipped with 360&deg; 2D LiDAR, ultrasonic rangefinder array, and wheel encoders for real-time map generation and collision-free path planning.
+              </p>
+              <div class="project-tech-tags">
+                <span class="tag-badge">ROS 2</span>
+                <span class="tag-badge">STM32</span>
+                <span class="tag-badge">LiDAR</span>
+                <span class="tag-badge">Extended Kalman Filter</span>
+              </div>
+              <div class="project-actions">
+                <button type="button" class="btn-project-detail" data-project="robot-slam">
+                  Inspect System Specs &rarr;
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2 -->
+          <article class="project-card">
+            <div class="project-visual">
+              <svg class="project-blueprint-svg" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="200" fill="#0b1120"/>
+                <path d="M100 170 L180 170" stroke="#64748b" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="140" cy="165" r="14" fill="#1e293b" stroke="#00f0ff" stroke-width="2"/>
+                <line x1="140" y1="165" x2="200" y2="90" stroke="#00f0ff" stroke-width="5" stroke-linecap="round"/>
+                <circle cx="200" cy="90" r="10" fill="#1e293b" stroke="#f59e0b" stroke-width="2"/>
+                <line x1="200" y1="90" x2="270" y2="70" stroke="#3b82f6" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="270" cy="70" r="8" fill="#1e293b" stroke="#00f0ff" stroke-width="2"/>
+                <path d="M270 70 L290 60 M270 70 L290 80" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="295" cy="70" r="4" fill="#ef4444"/>
+              </svg>
+              <div class="project-badge-type">VISION & KINEMATICS</div>
+            </div>
+
+            <div class="project-info">
+              <h3 class="project-title">4-DOF Robotic Arm with Computer Vision</h3>
+              <p class="project-desc">
+                Custom articulated robotic arm with inverse kinematics algorithms. Connected with an overhead camera to perform real-time color detection and automated pick-and-place routines.
+              </p>
+              <div class="project-tech-tags">
+                <span class="tag-badge">Inverse Kinematics</span>
+                <span class="tag-badge">OpenCV</span>
+                <span class="tag-badge">Python</span>
+                <span class="tag-badge">SolidWorks CAD</span>
+              </div>
+              <div class="project-actions">
+                <button type="button" class="btn-project-detail" data-project="robotic-arm">
+                  Inspect System Specs &rarr;
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3 -->
+          <article class="project-card">
+            <div class="project-visual">
+              <svg class="project-blueprint-svg" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="200" fill="#0b1120"/>
+                <rect x="60" y="110" width="280" height="16" rx="4" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+                <circle cx="90" cy="118" r="8" fill="#00f0ff"/>
+                <circle cx="310" cy="118" r="8" fill="#00f0ff"/>
+                <rect x="180" y="70" width="40" height="40" rx="4" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" stroke-width="2"/>
+                <line x1="200" y1="30" x2="200" y2="65" stroke="#10b981" stroke-width="3" stroke-dasharray="3 3"/>
+                <circle cx="200" cy="26" r="6" fill="#10b981"/>
+              </svg>
+              <div class="project-badge-type">INDUSTRIAL AUTOMATION</div>
+            </div>
+
+            <div class="project-info">
+              <h3 class="project-title">Smart IoT Sorting & Quality Inspection Cell</h3>
+              <p class="project-desc">
+                Conveyor sorting station utilizing inductive and optical sensors to distinguish metallic from non-metallic parts, actuated via pneumatic cylinders with real-time MQTT telemetry dashboard.
+              </p>
+              <div class="project-tech-tags">
+                <span class="tag-badge">PLC Logic</span>
+                <span class="tag-badge">ESP32 IoT</span>
+                <span class="tag-badge">Pneumatics</span>
+                <span class="tag-badge">MQTT Broker</span>
+              </div>
+              <div class="project-actions">
+                <button type="button" class="btn-project-detail" data-project="iot-station">
+                  Inspect System Specs &rarr;
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4 -->
+          <article class="project-card">
+            <div class="project-visual">
+              <svg class="project-blueprint-svg" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect width="400" height="200" fill="#0b1120"/>
+                <path d="M50 140 Q 110 50, 180 100 T 350 95" stroke="#00f0ff" stroke-width="3" fill="none"/>
+                <line x1="50" y1="95" x2="350" y2="95" stroke="#f59e0b" stroke-width="2" stroke-dasharray="5 5"/>
+                <circle cx="180" cy="100" r="4" fill="#00f0ff"/>
+                <circle cx="350" cy="95" r="5" fill="#10b981"/>
+              </svg>
+              <div class="project-badge-type">CONTROL THEORY</div>
+            </div>
+
+            <div class="project-info">
+              <h3 class="project-title">Precision Closed-Loop PID Motor Speed Controller</h3>
+              <p class="project-desc">
+                High-precision digital controller maintaining constant motor RPM under dynamically changing mechanical loads, utilizing optical encoder feedback and anti-windup algorithms.
+              </p>
+              <div class="project-tech-tags">
+                <span class="tag-badge">Discrete PID</span>
+                <span class="tag-badge">MATLAB / Simulink</span>
+                <span class="tag-badge">Optical Encoders</span>
+                <span class="tag-badge">Custom PCB</span>
+              </div>
+              <div class="project-actions">
+                <button type="button" class="btn-project-detail" data-project="pid-controller">
+                  Inspect System Specs &rarr;
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         TECHNICAL COMPETENCIES MATRIX
+         ====================================================================== -->
+    <section class="section-wrapper bg-surface" id="skills">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Capabilities</span>
+          <h2 class="section-title">Technical Competencies Matrix</h2>
+          <p class="section-subtitle">
+            Tools, programming languages, and hardware platforms mastered throughout engineering studies and practical project execution.
+          </p>
+        </div>
+
+        <div class="skills-container-grid">
+          
+          <!-- Category 1 -->
+          <div class="skill-category-card">
+            <div class="skill-cat-head">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                <polyline points="2 17 12 22 22 17"></polyline>
+                <polyline points="2 12 12 17 22 12"></polyline>
+              </svg>
+              <span>Embedded & Hardware</span>
+            </div>
+            <div class="skill-chips-wrap">
+              <span class="skill-chip">STM32 Microcontrollers</span>
+              <span class="skill-chip">Arduino & ESP32</span>
+              <span class="skill-chip">Raspberry Pi</span>
+              <span class="skill-chip">Motor Drivers & H-Bridges</span>
+              <span class="skill-chip">Encoders & IMUs</span>
+              <span class="skill-chip">LiDAR & Ultrasonic</span>
+              <span class="skill-chip">PCB Schematic Design</span>
+            </div>
+          </div>
+
+          <!-- Category 2 -->
+          <div class="skill-category-card">
+            <div class="skill-cat-head">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+              <span>Software & Control</span>
+            </div>
+            <div class="skill-chips-wrap">
+              <span class="skill-chip">Embedded C / C++</span>
+              <span class="skill-chip">Python Programming</span>
+              <span class="skill-chip">ROS / ROS 2</span>
+              <span class="skill-chip">MATLAB & Simulink</span>
+              <span class="skill-chip">Digital PID Tuning</span>
+              <span class="skill-chip">OpenCV Computer Vision</span>
+              <span class="skill-chip">Git & Version Control</span>
+            </div>
+          </div>
+
+          <!-- Category 3 -->
+          <div class="skill-category-card">
+            <div class="skill-cat-head">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              <span>Mechanical CAD & Prototyping</span>
+            </div>
+            <div class="skill-chips-wrap">
+              <span class="skill-chip">SolidWorks CAD</span>
+              <span class="skill-chip">Mechanism Kinematics</span>
+              <span class="skill-chip">3D Printing (FDM / PETG)</span>
+              <span class="skill-chip">Gear Train Ratios</span>
+              <span class="skill-chip">Pneumatic Actuators</span>
+              <span class="skill-chip">Structural Assembly</span>
+            </div>
+          </div>
+
+          <!-- Category 4 -->
+          <div class="skill-category-card">
+            <div class="skill-cat-head amber">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+              </svg>
+              <span>Spiritual & Cognitive Strength</span>
+            </div>
+            <div class="skill-chips-wrap">
+              <span class="skill-chip">Complete Quran Hafiz (30 Juz')</span>
+              <span class="skill-chip">Deep Memorization Capacity</span>
+              <span class="skill-chip">Laser Mental Focus</span>
+              <span class="skill-chip">High Patience with Complex Tasks</span>
+              <span class="skill-chip">Strong Engineering Integrity</span>
+              <span class="skill-chip">Systematic Thinking</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         CONTACT SECTION
+         ====================================================================== -->
+    <section class="section-wrapper" id="contact">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-tag">Communication</span>
+          <h2 class="section-title">Connect with Ammar Maher</h2>
+          <p class="section-subtitle">
+            Interested in discussing mechatronics engineering projects, robotics collaborations, or technical opportunities? Reach out directly.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          
+          <!-- Contact Info -->
+          <div class="contact-info-panel">
+            
+            <div class="contact-card-item">
+              <div class="contact-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </div>
+              <div class="contact-text-box">
+                <span class="contact-label">Electronic Mail</span>
+                <span class="contact-value">ammar.maher.mecha@gmail.com</span>
+              </div>
+            </div>
+
+            <div class="contact-card-item amber">
+              <div class="contact-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+              </div>
+              <div class="contact-text-box">
+                <span class="contact-label">Direct WhatsApp / Mobile</span>
+                <span class="contact-value">+20 (Available upon inquiry)</span>
+              </div>
+            </div>
+
+            <div class="contact-card-item">
+              <div class="contact-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                  <rect x="2" y="9" width="4" height="12"></rect>
+                  <circle cx="4" cy="4" r="2"></circle>
+                </svg>
+              </div>
+              <div class="contact-text-box">
+                <span class="contact-label">Professional Network</span>
+                <span class="contact-value">LinkedIn Profile</span>
+              </div>
+            </div>
+
+            <div class="contact-card-item">
+              <div class="contact-icon-box">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                </svg>
+              </div>
+              <div class="contact-text-box">
+                <span class="contact-label">Code Repositories</span>
+                <span class="contact-value">GitHub / Mechatronics Projects</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Contact Form -->
+          <form class="contact-form-panel" id="contactForm" aria-label="Contact Ammar Maher Form">
+            <div class="form-group">
+              <label for="formName" class="form-label">Your Name</label>
+              <input type="text" id="formName" class="form-input" placeholder="e.g. Dr. Ahmed Hassan" required>
+            </div>
+
+            <div class="form-group">
+              <label for="formEmail" class="form-label">Your Email Address</label>
+              <input type="email" id="formEmail" class="form-input" placeholder="e.g. ahmed@engineering.org" required>
+            </div>
+
+            <div class="form-group">
+              <label for="formMessage" class="form-label">Transmission Message</label>
+              <textarea id="formMessage" class="form-textarea" placeholder="Describe the engineering inquiry, robotics project, or collaboration..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="margin-top: 8px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+              Transmit Message
+            </button>
+          </form>
+
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================================
+       PROJECT DETAILS MODAL (Interactive System Specs)
+       ======================================================================== -->
+  <div class="modal-overlay" id="projectModal" aria-hidden="true" role="dialog">
+    <div class="modal-card">
+      <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="Close Project Modal">✕</button>
+      <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan);" id="modalCategory">
+        SYSTEM SPECIFICATION
+      </div>
+      <h3 style="font-size: 1.35rem; margin: 8px 0 16px; color: var(--text-primary);" id="modalTitle">
+        Project Specification
+      </h3>
+      <div id="modalBody" style="font-size: 0.92rem; color: var(--text-secondary); line-height: 1.7;">
+        <!-- Injected via script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       TRANSMISSION CONFIRMATION TOAST
+       ======================================================================== -->
+  <div class="toast-msg" id="contactToast" role="alert" aria-live="polite">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-emerald)" stroke-width="2.5">
+      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+      <polyline points="22 4 12 14.01 9 11.01"></polyline>
+    </svg>
+    <div>
+      <div style="font-weight: 700; color: var(--accent-emerald);">Transmission Successful!</div>
+      <div style="font-size: 0.8rem; color: var(--text-secondary);">Ammar Maher will review your inquiry shortly.</div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       FOOTER
+       ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-quote">
+        &ldquo;Knowledge with integrity builds civilizations.&rdquo;
+      </div>
+      <div style="display: flex; gap: 14px;">
+        <button type="button" onclick="replayIntroLoader()" class="btn-skip" style="border-radius: 99px;">
+          Replay Mecha Intro ↻
+        </button>
+      </div>
+      <div class="footer-copy">
+        &copy; 2026 <strong>Ammar Maher Abdel-Jalil El-Qamar</strong> &middot; Faculty of Engineering, Mechatronics Department &middot; Quran Hafiz
+      </div>
+    </div>
+  </footer>
+
+  <!-- Direct Script Linkage in Flat Directory -->
+  <script src="script.js"></script>
+</body>
+</html>
